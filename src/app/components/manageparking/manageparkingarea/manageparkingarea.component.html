@@ -1,0 +1,32 @@
+<div class="container-fluid page">
+    <!-- <div class="d-flex page__box p-3 mt-2">Add Area</div> -->
+    <div class="page__content mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-box clearfix align-items-center ">
+                        <!-- {{floor | json}}   -->
+                        <form (ngSubmit)="addArea()"  #mpark="ngForm">
+                            <div class="form-row p-3">
+                                <div class="form-group col-md-6">
+                                    <div  class="slot_title ">
+                                        Add Area 
+                                    </div>
+                                    <br>
+                                    <input [(ngModel)]="area.areaNo" name="floorNo" type="input" class="form-control input_width"
+                                        id="input" placeholder="Enter Area" required #mpark1="ngModel">
+                                        <div class="alert alert-danger position-relative" *ngIf="mpark1.invalid && (mpark1.touched || mpark1.dirty)">
+                                            <span>Area is required</span></div>
+                                </div>
+                            </div>
+                            <div class="text-center d-flex justify-content-left m-3">
+                                <button type="submit" class="btn btn-info btn-lg" [disabled]="mpark.invalid" style="margin-bottom:10px">Add Area</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

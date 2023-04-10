@@ -1,0 +1,30 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">Cafeterias</span></div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="row"  style="overflow-y:auto;max-height: 65vh;">
+            <div class="col-md-12">
+                <div class="main-box clearfix align-items-center">
+                    
+                  <!-- <h4 class="text-info">All Cafeteria List</h4> -->
+
+                  <ul class="responsive-table">
+                    <li class="table-header">
+                      <div class="col col-1">Cafeteria</div>
+                      <div class="col col-2">Location</div>
+                      <div class="col col-3">Status</div>
+                      <div class="col col-4">View Stall</div>
+
+                    </li>
+                    <li class="table-row" *ngFor="let e of cafeterialist" >
+                       
+                      <div class="col col-1" data-label="Job Id">{{e.cafeName}}</div>
+                      <div class="col col-2" data-label="Customer Name">{{e.floor.floorNo}}</div>
+                      <div class="col col-3" data-label="Amount">{{e.cafeStatus}}</div>
+                      <div class="col col-2 btn btn-info button_design" data-label="mount" (click)="stat(e)">View Stalls</div>
+                    </li>
+                    </ul>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

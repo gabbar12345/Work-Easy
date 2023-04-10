@@ -1,0 +1,143 @@
+ <section class="vh-100" style="background-image: url('../../assets/login.png');">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-sm-6">
+          <div class="card" style="border-radius: 1rem;background-color: #ffffff !important;">
+            
+            <div class="d-flex mb-1 card-header justify-content-center" style="float:right;">
+              
+              <span class="fw-bold mb-0"><img src="../../assets/logo.png"></span>
+            </div>
+            <div class="row g-0">
+              
+              <div class="col-sm-12 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                  <!-- {{loginData | json}} -->
+                  <h1 style="color:rgb(94, 88, 88) ; font-size:3rem;">Sign in</h1>
+                  <form (ngSubmit)="formSubmit()">
+  
+                    
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"></h5>
+  
+                    <div class="form-outline mb-4">
+                      <input 
+                        [(ngModel)]="loginData.userName"
+                       name="username"
+                       required
+                       matInput
+                       placeholder="Email Address"
+                       
+                      type="email" id="email" class="form-control form-control-lg input_width_login" />
+                      <label class="form-label" for="email"></label> 
+                    </div>
+                    
+  
+                    <div class="form-outline mb-4">
+                     
+                      
+                      <input 
+                      [type]="fieldTextType ? 'text' : 'password'"
+                      [(ngModel)]="loginData.password"
+                       name="password"
+                       required
+                       matInput
+                       placeholder="Password"
+
+                      type="password" id="password" class="form-control form-control-lg input_width_login" />
+                     
+                      <label class="form-label" for="password"  ></label>
+
+                      <i
+                      class="fa eye_position"
+                      [ngClass]="{
+                        'fa-eye-slash': !fieldTextType,
+                        'fa-eye':fieldTextType
+                      }"
+                      (click)="toggleFieldTextType()"
+                     > </i>
+                    </div>
+                     
+  
+                    <div class="pt-1 mb-4">
+                      <!-- <a routerLink="/admin"><button class="btn btn-dark btn-lg btn-block" type="submit">Login</button></a> -->
+                      <div class="container text-center">
+                        <button mat-button color="primary" class="btn btn-info btn-lg bt" type="submit">
+                          Login 
+                        </button>
+
+                        
+                        <button class="ml-3 btn btn-danger btn-lg bt" type="reset" value="reset">
+                          Reset
+                        </button>
+                      </div>
+        
+                    </div>
+  
+                   
+                  </form>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+
+
+  <!-- <div class="bootstrap-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <mat-card>
+            <div class="container text-center">
+              <img src="../../../assets/logo.png" alt="" />
+            </div>
+  
+            <h1 class="text-center">Login Here !!</h1>
+  
+            {{ loginData | json }} 
+            <form (ngSubmit)="formSubmit()">
+              
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>User Name</mat-label>
+                <input
+                  [(ngModel)]="loginData.userName"
+                  name="username"
+                  required
+                  matInput
+                  placeholder="Enter here"
+                />
+                <mat-hint>Valid User Name</mat-hint>
+              </mat-form-field>
+  
+              
+  
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>User Password</mat-label>
+                <input
+                  [(ngModel)]="loginData.password"
+                  name="password"
+                  type="password"
+                  required
+                  matInput
+                  placeholder="Enter here"
+                />
+              </mat-form-field>
+  
+              <div class="container text-center">
+                <button mat-raised-button color="primary" type="submit">
+                  Login
+                </button>
+                <button class="ml10" mat-raised-button color="accent">
+                  Reset
+                </button>
+              </div>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->

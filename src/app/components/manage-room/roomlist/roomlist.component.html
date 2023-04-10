@@ -1,0 +1,22 @@
+<!-- <h4 class="text-info">Displaying parking Booked details.</h4> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+<input [(ngModel)]="today.date" (ngModelChange)='conferenceRoomBooking($event)' ngbDatepicker name="date"
+                      type="date" class="form-control hide mb-4 datepicker" id="date">
+<ul class="responsive-table container-fluid" style="overflow-y:auto;max-height: 65vh;">
+  <li class="table-header">
+    <div class="col col-1">Id</div>
+    <div class="col col-2">Organiser</div>
+    <div class="col col-3">HallName</div>
+    <div class="col col-4">Start Time</div>
+    <div class="col col-5">End Time</div>
+  </li>
+  <li class="table-row" *ngFor="let e of roomdata" >
+    <div class="col col-1" data-label="Job Id">{{e.roomId}}</div>
+    <div class="col col-2" data-label="Job Id">{{e.organiser.firstName}} {{e.organiser.lastName}}</div>
+    <div class="col col-3" data-label="Customer Name">{{e.hallName}}</div>
+    <div class="col col-4" data-label="Payment Status">{{e.startTime}}</div>
+    <div class="col col-5" data-label="Payment Status">{{e.endTime}}</div>
+  </li>
+  </ul>

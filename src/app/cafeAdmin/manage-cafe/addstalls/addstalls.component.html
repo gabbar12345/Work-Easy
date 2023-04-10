@@ -1,0 +1,60 @@
+<div class="container-fluid page">
+    <!-- <div class="d-flex page__box p-3 mt-2">Add Desk</div> -->
+    <div class="page__content shadow mt-5">
+        <div class="container-fluid" >
+            <div class="row" >
+                <div class="col-md-12" >
+                    <div class="main-box clearfix align-items-center ">
+                        <!-- {{add_stall | json}}   -->
+                        <form (ngSubmit)="addStall()"  #adds="ngForm">
+                            <div class="form-row p-3">
+                                <div class="form-group col-md-6">
+                                    <div  class="slot_title ">
+                                       Enter Stall Name
+                                    </div>
+                                    <br>
+                                    <input [(ngModel)]="add_stall.stallName" name="stallName" type="input" class="form-control input_width"
+                                        id="input" placeholder="stallName" #addc1="ngModel">
+                                        <div class="alert alert-danger position-relative" *ngIf="addc1.invalid && (addc1.touched || addc1.dirty)">
+                                            <span> stall Name is required</span>
+                                        </div>
+
+                                </div>
+                            </div>
+                            <!--select floor-->
+                            <div class="form-group col-md-6">
+                                <label for="role">Status</label>
+                                <select [(ngModel)]="add_stall.stallStatus"  name="status"
+                                    class="form-control input_width" id="status">
+                                    <option>open</option>
+                                    <option>close</option>
+                                </select>
+                            </div>
+
+                            <input type="text" [(ngModel)]="add_stall.cafeteria" name="cafeteria" class="hide_me" />
+                            <div class="slot_details">
+                                <div  class="slot_title ">
+                                    Select Cafeteria
+                                </div>
+                                <div class="slot_div">
+
+                                    <div class="slot_item" *ngFor="let d of cafe" (click)="setNewVal(d)"
+                                        [ngClass]="{'active':setSlot==d.cafeId}">
+                                        {{d.cafeName}}
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info btn-lg" [disabled]="adds.invalid" style="margin-bottom:10px;">Add Stall</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

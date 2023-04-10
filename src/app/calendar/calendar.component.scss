@@ -1,0 +1,96 @@
+
+.page {
+    //font-style:  normal normal 14px/1 FontAwesome;
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;
+    &__box {
+      min-height: 120px;
+      background: #1e293b;
+      margin: 0 -1rem;
+      font-size: 36px;
+      // background-image: linear-gradient(180deg,#000428, #004e92);
+      background-image: linear-gradient(180deg, #002954,#4f678c);
+
+    }
+    &__content {
+      min-height: calc(100vh - 178px);
+      border-radius: 10px;
+      margin-top: -2rem;
+      background: white;
+      color: black;
+      font-size: 1 rem;
+      &-data {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .inf-content{
+    border:1px solid #DDDDDD;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+     border-radius:5px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}	
+// .fc .fc-toolbar-title {
+//     font-size: 0.5em;
+//     margin: 0;
+// }
+// .fc .fc-daygrid-day.fc-day-today {
+//     background-color: rgb(229, 248, 225, 0.5) !important;
+//   }
+  .btn3d {    transition:all .08s linear;    position:relative;    border:0px;    margin-right:10px;    margin-bottom:40px;}
+  
+.container-fluid::-webkit-scrollbar { 
+    display: none; 
+    overflow: hidden; /* Safari and Chrome */
+}
+.ng-select{
+  box-sizing:content-box;
+  display:contents;
+}
+
+
+.showdesk {
+    margin-top: 20px;
+    //background-color: red;
+    display: flex;
+    align-items: center;
+ }
+ .hide_me {
+    display: none;
+ }
+ .slot_div {
+    //width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+ }
+ .slot_item {
+    height: 60px;
+    width: 100px;
+ 
+    background-color: rgb(141, 241, 141);
+    margin: 5px 10px; //top left
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+ }
+ .active {
+    background-color: rgb(36, 108, 167);
+ }
+ .slot_details {
+    width: 100%;
+ }
+ .slot_title {
+    width: 100%;
+    font-size: 1.25rem;
+ }

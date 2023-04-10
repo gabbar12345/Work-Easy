@@ -1,0 +1,24 @@
+<app-header  (toggleSidebarForMe)="sideBarToggler()"></app-header>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" [opened]="sideBarOpen" class="grad">
+  <mat-nav-list>
+      
+      <h1 matSubheader class="mt-2"></h1>
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['empd']">
+        <mat-icon>dashboard</mat-icon> Dashboard
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['home']">
+        <mat-icon>home</mat-icon> Profile
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['wfm']">
+        <mat-icon>location_city</mat-icon> WFH/WFO Request
+      </a>
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['calendar']"> <mat-icon>calendar_today</mat-icon> Schedule </a>
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['desk']"> <mat-icon>business</mat-icon> Book desk </a>
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['parking']"> <mat-icon>local_parking</mat-icon> Book Parking slot </a>
+      <a mat-list-item  routerLinkActive="list-item-active" [routerLink]="['cafeteria']"> <mat-icon>local_cafe</mat-icon> Cafeteria </a>
+    </mat-nav-list>
+    <div class="footer">HashedIn <br><br> By Deloitte</div>
+    </mat-sidenav>
+    <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+  </mat-sidenav-container>

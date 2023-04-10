@@ -1,0 +1,449 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">Dashboard</span></div>
+    <div class="page__content shadow p-3 position-relative">
+
+        <div class="container-fluid" style="overflow-y:auto;max-height: 73vh;">
+            <div style="display:flex ;" class="mb-5">
+                <div style="display:flex;flex-wrap: wrap;justify-content: space-around;">
+                    <div class="card l-bg-blue-dark radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-statistic-2 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-office1"></i></div>
+                            <div class="mb-4">
+                                <h1 class="card-title mb-0">Next day in the Office</h1>
+                            </div>
+                                <div class="d-flex week">
+                                        <div>{{ans}}</div>
+                                </div>
+                            <div class="icon">
+                                <i class="fa fa-building" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card l-bg-blue-dark radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-statistic-2 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-users1"></i></div>
+                            <div class="mb-4">
+                                <h1 class="card-title mb-0">Working From Office</h1>
+                            </div>
+                            <div class="d-flex week">
+                                
+                                <div id="m" *ngIf="d[1]==='WFH' || d[1]==null">M</div>
+                                <div id="m" *ngIf="d[1]==='WFO'" [ngClass]="{'active':true}">M</div>
+                                
+                                <div id="t" *ngIf="d[2]==='WFH'|| d[2]==null">T</div>
+                                <div id="t" *ngIf="d[2]==='WFO'" [ngClass]="{'active':true}">T</div>
+                                <div id="w" *ngIf="d[3]==='WFH'  || d[3]==null">W</div>
+                                <div id="w" *ngIf="d[3]==='WFO'" [ngClass]="{'active':true}">W</div>
+                                <div id="th" *ngIf="d[4]==='WFH' || d[4]==null">Th</div>
+                                <div id="th" *ngIf="d[4]==='WFO'" [ngClass]="{'active':true}">Th</div>
+                                <div id="f" *ngIf="d[5]==='WFH' || d[5]==null">F</div>
+                                <div id="f" *ngIf="d[5]==='WFO'" [ngClass]="{'active':true}">F</div>
+                            </div>
+                            <div class="col-5">
+                                <button class="btn btn-info mt-5" (click)="wfoDays()">View Details</button>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 3rd card <div *ngIf="member.bookingId!=null"> -->
+                    <div class="card l-bg-blue-dark radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-user1"></i></div>
+                            <div *ngIf="desk==null; else templateName">
+                                <div class="mb-4">
+                                    <h1 class="card-title mb-0">Want to Book desk?</h1>
+
+                                </div>
+                                <div class="row mt-5 pt-4 d-flex">
+
+                                    <div class="col-md-8 mt-5 pt-2">
+                                        <button (click)="deskpopup()" class="btn btn-info btn-lg mb-5">Book Desk</button>
+                                    </div>
+                                </div>
+
+                                <div class="icon">
+                                    <i class="fa fa-laptop" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <ng-template #templateName>
+
+                                <div class="mb-4">
+                                    <h1 class="card-title mb-0">Your Desk Booked Detail<button class="btn btn-danger ml-5" (click)="delbookingdesk(desk.bookingId)">Cancel</button> </h1>
+                                </div>
+                                <div class="row align-items-center mb-2 d-flex">
+                                    <div class="col-12 m-1">
+                                        <h2 class="">
+                                            <span class="border-5 font-weight-bold"> {{desk.desks.floor.floorNo}} ,
+                                                {{desk.desks.deskName}} DESK</span><br>
+                                            <div class="mt-3" style="display:flex ;justify-content:space-between;">
+                                                <div>Start Time <br> {{desk.startTime}} </div><i
+                                                    class="fa fa-chevron-circle-right fa-2x mt-2"></i>
+                                                <div class="mr-5">End Time <br> {{desk.endTime }} </div>
+                                            </div>
+
+                                        </h2>
+                                        <div class="col-md-12 text-center">
+                                            <button (click)="ext()" class="btn btn-info btn-lg mb-5">Extend Time</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-right">
+
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <!-- 4th card -->
+
+                    <div class="card l-bg-blue-dark radius-10 border-start border-0 border-3 border-info">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-table1"></i></div>
+                            <div *ngIf="parking==null; else templateName1">
+                                <div class="mb-4">
+                                    <h1 class="card-title mb-0">Want to Book Parking Slot?</h1>
+                                </div>
+                                <div class="row align-items-center mt-5 pt-4 d-flex">
+                                    <div class="col-md-12 mt-5 pt-2">
+                                        <button (click)="parkpopup()" class="btn btn-info btn-lg mb-5">Book Slot</button>
+                                    </div>
+                                    <div class="col-4 text-right">
+
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-car" aria-hidden="true"></i>
+                                </div>
+                            </div>
+<!-- table -->
+
+
+
+
+                            <ng-template #templateName1>
+
+                                <div class="mb-4">
+                                    <h1 class="card-title">Your booked parking detail<button class="btn btn-danger ml-5" (click)="delbookingslot(parking.bookingId)">Cancel</button> </h1>
+                                </div>
+                                <div class="row align-items-center mb-2 d-flex">
+                                    <div class="col-12 m-1">
+                                        <h2 class="">
+                                            <span class="border-5 font-weight-bold"> {{parking.slots.area.areaNo}} ,
+                                                {{parking.slots.parkingSlotName}} Parking </span><br>
+                                            <div class="mt-3" style="display:flex ;justify-content:space-between;">
+                                                <div>Start Time <br> {{parking.startTime}} </div><i
+                                                    class="fa fa-chevron-circle-right fa-2x mt-2"></i>
+                                                <div class="mr-5">End Time <br> {{parking.endTime}} </div>
+                                            </div>
+                                        </h2>
+                                        <div class="col-md-12 text-center">
+                                            <button (click)="extp()" class="btn btn-info btn-lg mb-5">Extend Time</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-right">
+
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+
+                <!--calender-->
+                
+                <div class="mobile-wrapper">
+                    
+                    <!--======= Header =======-->
+                    <header class="header1">
+                        <div class="container1 text-center input">
+                            
+                            <span>Welcome! {{user.principal.employee.firstName}} {{user.principal.employee.lastName}}</span>
+                        </div>
+                    </header>
+                    <!--======= Today =======-->
+                    <section class="today-box" id="today-box">
+                        
+                        <h3 class="date-title ">{{today.date | date:'fullDate'}}
+                            
+                        </h3>
+                    </section>
+                    <section class="upcoming-events">
+                        <div class="container1">
+
+                            <input [(ngModel)]="today.date" (ngModelChange)='even($event);stat($event);getwfo($event)' ngbDatepicker name="date"
+                                type="date" class="form-control hide mb-4" id="date">
+                            <h3>
+                                Events
+
+                            </h3>
+                            <div class="events-wrapper">
+                                <div class="event" *ngFor="let e of event">
+                                    <i class="ion ion-ios-flame hot"></i>
+                                    <h4 class="event__point">{{e.startTime}} - {{e.endTime}}</h4>
+                                    
+                                    <p class="event__description">
+                                        {{e.title}}
+                                    </p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <ul class="responsive-table pt-5 ml-4" style="width: 70%;">
+				<li class="table-header">
+				  
+				  <div class="col col-1">Team</div>
+				  
+				  
+				  <div class="col col-2">Status</div>
+				</li>
+				<li class="table-row" *ngFor="let employee of status" >
+				  
+				  <div class="col col-1" data-label="Customer Name">{{employee?.firstName}} {{employee?.lastName}}</div>
+                  <div *ngIf="employee.status==='WFO'">
+				  <div class="bg-soft-success">
+                    <i class="indicator bg-success"></i>
+                    <div class="col col-2" data-label="Payment Status">{{employee?.status}}</div>
+                  </div>
+                  </div>
+
+                  <div *ngIf="employee.status==='WFH'">
+                    <div class="bg-soft-danger ">
+                      <i class="indicator bg-success"></i>
+                      <div class="col col-2" data-label="Payment Status">{{employee?.status}}</div>
+                    </div>
+                    </div>
+				 
+				</li>
+			  </ul>
+        </div>
+    </div>
+</div>
+
+<!-- extend desk timing -->
+<ng-template #extend>
+    <div class="modal-header">
+        <h1 class="modal-title pull-left">
+            Extend The Timing
+        </h1>
+        <button type="button" class="btn-close close" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="extTime(desk.bookingId)">
+            <div class="form-group col-md-6">
+                <label for="endTime">End Time</label>
+                <input [(ngModel)]="eTime" name="startTime" type="time" class="form-control input_width" id="startTime"
+                    placeholder="endTime" step="1800">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-info submit_button" aria-label="Close" (click)="modalRef?.hide()">Extend Time</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- parking pop-up model -->
+<ng-template #paarking>
+    <div class="modal-header">
+        <h1 class="modal-title pull-left">
+            Book Parking
+        </h1>
+        <button type="button" class="btn-close close" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="form" (ngSubmit)="add()" #slotBook="ngForm">
+            <div class="form-row p-3">
+            </div>
+
+            <div class="form-row p-3">
+                <div class="form-group col-md-6">
+                    <label for="role">Parking Area</label>
+                    <select [(ngModel)]="member.slots.area" (ngModelChange)='getslot($event)' name="role"
+                        class="form-control input_width" id="role" required #park="ngModel">
+                        <option>Select</option>
+                        <option *ngFor="let f of area" [ngValue]="f">{{f?.areaNo}}</option>
+
+                    </select>
+                    <div class="alert alert-danger position-relative" *ngIf="park.invalid && (park.touched || park.dirty)">
+						<span>This field is required</span></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="doj">Date</label>
+                    <input [(ngModel)]="member.date" (ngModelChange)='getslot($event)' name="doj" type="date"
+                        class="form-control input_width" id="doj" placeholder="Date Of Joining" required #park1="ngModel">
+                        <div class="alert alert-danger position-relative" *ngIf="park1.invalid && (park1.touched || park1.dirty)">
+                            <span>This field is required</span></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="endTime">Start Time</label>
+                    <input [(ngModel)]="member.startTime" (ngModelChange)='getslot($event)' name="startTime" type="time"
+                        class="form-control input_width" id="startTime" placeholder="endTime" step="1800" required #park2="ngModel">
+                        <div class="alert alert-danger position-relative" *ngIf="park2.invalid && (park2.touched || park2.dirty)">
+                            <span>This field is required</span></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="stime">End Time</label>
+                    <input [(ngModel)]="member.endTime" (ngModelChange)='getslot($event)' name="stime" type="time"
+                        class="form-control input_width" id="stime" placeholder="End Time" step="1800" required #park3="ngModel">
+                        <div class="alert alert-danger position-relative" *ngIf="park3.invalid && (park3.touched || park3.dirty)">
+                            <span>This field is required</span></div>
+                </div>
+                <!-- <input type="text" name="slots" class="hide_me" />
+                <div class="slot_details">
+
+                    <div class="slot_div">
+                        <div class="slot_title ">
+                            All Slots
+                        </div>
+                        <div class="slot_item" *ngFor="let p of allslot" (click)="setNewVal(p)"
+                            [ngClass]="{'active':setSlot==p.parkingSlotId}">
+                            {{p.parkingSlotName}}
+                        </div>
+                    </div>
+                </div> -->
+
+                <!---available slot-->
+                <input type="text" [(ngModel)]="member.slots" name="slots" class="hide_me" required />
+                <div class="slot_details">
+                    <div *ngIf="showSlot" class="slot_title ">
+                        Choose Available Slot
+                    </div>
+                    <div class="slot_div">
+
+                        <div class="slot_item" *ngFor="let d of slot" (click)="setNewVal(d)"
+                            [ngClass]="{'active':setSlot==d.parkingSlotId}">
+                            {{d.parkingSlotName}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="text-center ">
+                <button type="submit" class="btn btn-info submit_button" aria-label="Close" [disabled]="slotBook.invalid" (click)="modalRef?.hide()">Book Slot</button>
+
+                <button type="reset" class="btn btn-danger submit_button " value="reset">
+                    Clear
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- book desk popup model -->
+<ng-template #deskpop>
+    <div class="modal-header">
+        <h1 class="modal-title pull-left">
+            Book The Desk
+        </h1>
+        <button type="button" class="btn-close close" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form #deskform="ngForm"  id="form" (ngSubmit)="adddesk()" #ff="ngForm">
+            <div class="form-row p-3">
+                <div class="form-group col-md-6">
+                    <label for="role">Floor</label>
+                    <select [(ngModel)]="bookdesk.desks.floor"  name="role"
+                        class="form-control input_width" id="role" required #att1="ngModel" >
+                        <option>Select</option>
+                        <option *ngFor="let f of floor" [ngValue]="f">{{f?.floorNo}}</option>
+                    </select>
+                    <div class="alert alert-danger position-relative" *ngIf="att1.invalid && (att1.touched || att1.dirty)">
+                        <span>Floor is required</span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="doj">Date</label>
+                    <input [(ngModel)]="bookdesk.date"  name="doj"
+                        type="date" class="form-control input_width" id="doj" #att2="ngModel" placeholder="Date Of Joining" required>
+                        <div class="alert alert-danger position-relative" *ngIf="att2.invalid && (att2.touched || att2.dirty)">
+                            <span>Date is required</span></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="endTime">Start Time</label>
+                    <input [(ngModel)]="bookdesk.startTime"  name="startTime"
+                        type="time" class="form-control input_width" id="startTime" placeholder="endTime"
+                        step="1800"  required #att3="ngModel">
+
+                        <div class="alert alert-danger position-relative" *ngIf="att3.invalid && (att3.touched || att3.dirty)">
+                            <span>Start time is required</span>
+                        </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="stime">End Time</label>
+                    <input [(ngModel)]="bookdesk.endTime" (ngModelChange)='getdesk($event)' name="stime"
+                        type="time" class="form-control input_width" id="stime" placeholder="End Time"
+                        step="1800" required #att4="ngModel">
+                        <div class="alert alert-danger position-relative" *ngIf="att4.invalid && (att4.touched || att4.dirty)">
+                            <span>end time is required</span>
+                        </div>
+                        
+                </div>
+                
+                <input type="text" [(ngModel)]="bookdesk.desks" name="desks" class="hide_me" required />
+                <div class="desk_details">
+                    <div *ngIf="showDesk" class="desk_title ">
+                        Choose Available Desk
+                    </div>
+                    <div class="desk_div">
+
+                        <div class="desk_item" *ngFor="let d of desk1" (click)="setNewVal2(d)"
+                            [ngClass]="{'active':setState==d.deskId}">
+                            {{d.deskName}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-info submit_button" [disabled]="ff.invalid" aria-label="Close" (click)="modalRef?.hide()">Book Desk</button>
+                <button type="reset" class="btn btn-danger submit_button " value="reset">
+                    Clear
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<!-- Extend parking  -->
+<ng-template #extparking>
+    <div class="modal-header">
+        <h1 class="modal-title pull-left">
+            Extend The Park Timing
+        </h1>
+        <button type="button" class="btn-close close" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="extPark(parking.bookingId)">
+
+            <div class="form-group col-md-6">
+                <label for="endTime">End Time</label>
+                <input [(ngModel)]="eTime" name="startTime" type="time" class="form-control input_width" id="startTime"
+                    placeholder="endTime" step="1800">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-info submit_button" aria-label="Close" (click)="modalRef?.hide()" >Extend Time</button>
+
+            </div>
+        </form>
+    </div>
+</ng-template>

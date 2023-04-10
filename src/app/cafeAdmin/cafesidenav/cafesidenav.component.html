@@ -1,0 +1,48 @@
+<app-header  (toggleSidebarForMe)="sideBarToggler()"></app-header>
+<mat-sidenav-container class="">
+    <mat-sidenav mode="side" [opened]="sideBarOpen" class="grad">
+  <mat-nav-list>
+      <h1 matSubheader class="mt-2"></h1>
+      <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['cafe-dashboard']">
+        <mat-icon>dashboard</mat-icon> Dashboard
+      </a> -->
+  
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['home']">
+        <mat-icon>home</mat-icon> Profile
+      </a>
+      
+
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['manageCafe']">
+        <mat-icon>store_mall_directory</mat-icon> Add New
+      </a>
+      <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['home']">
+        <mat-icon>store_mall_directory</mat-icon> Add Stalls
+      </a> -->
+      <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['allcafe']">
+        <mat-icon>store_mall_directory</mat-icon> Manage Cafe
+      </a>
+      <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['allstall']">
+        <mat-icon>store_mall_directory</mat-icon> All Stalls
+      </a> -->
+     
+      <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['view']">
+        <mat-icon>visibility</mat-icon> View Team
+      </a> -->
+      <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['wfm']">
+        <mat-icon>visibility</mat-icon> WFH/WFO Request
+      </a> -->
+      <!-- <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['request']">
+        <mat-icon>access_alarm</mat-icon> All Request
+      </a> -->
+      <!-- <a mat-list-item [routerLink]="['calendar']"> <mat-icon>supervisor_account</mat-icon> Schedule </a> -->
+      <!-- <a mat-list-item [routerLink]="['assignstatus']"> <mat-icon>supervisor_account</mat-icon> assignstatus </a> -->
+
+      <!-- <a mat-list-item [routerLink]="['desk']"> <mat-icon>business</mat-icon> Desk Booking </a> -->
+
+      <a mat-list-item  [routerLink]="['parking']">  <mat-icon>local_parking</mat-icon> Book Slot </a>
+      <!-- <a mat-list-item  [routerLink]="['cafeteria']"> <mat-icon>local_cafe</mat-icon> Cafeteria </a> -->
+    </mat-nav-list>
+    <div class="footer">HashedIn <br><br>By Deloitte</div>
+    </mat-sidenav>
+    <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+  </mat-sidenav-container>

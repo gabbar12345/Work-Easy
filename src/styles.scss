@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400&display=swap');
+
+* {
+    font-family: "Sans Serif";
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Montserrat", sans-serif; }
+.container-fluid::-webkit-scrollbar {
+  display: none;
+}
+
+
+.modal-header
+{
+  background-color:rgba(141, 238, 206);
+}

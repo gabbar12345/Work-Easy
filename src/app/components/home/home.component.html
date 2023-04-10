@@ -1,0 +1,125 @@
+
+<!-- {{user | json}} -->
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">Profile</span></div>
+    <div class="page__content shadow p-3 position-relative">
+            <div class="container flex_items">
+                <div class="main-body ">
+                    <div class="row gutters-sm ">
+                        <div class="col-md-4 mb-3">
+                            <div class="card2">
+                                <div class="card-body">
+                                    <div class="d-flex2 flex-column align-items-center text-center">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                            class="rounded-circle" width="150">
+                                        <div class="mt-3">
+                                            <h2>{{user.principal.employee.firstName}} {{user.principal.employee.lastName}}</h2>
+                                            <h3 class="text-secondary mb-1">{{user.principal.employee.designation}}</h3>
+                                            <br>
+                                            <div class="but">
+                                                <!-- <button class="btn btn-primary mr-2">Follow </button> -->
+                                                <!-- <button class="btn btn-outline-primary"> Message</button> -->
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-md-8 secondcard">
+                            <div class="card2 mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h2 class="mb-0">Full Name</h2>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            {{user.principal.employee.firstName}} {{user.principal.employee.lastName}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h2 class="mb-0">Email</h2>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                           {{user.principal.employee.userName}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h2 class="mb-0">Phone</h2>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                           (239) 816-9029
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h2 class="mb-0">Mobile</h2>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            (320) 380-4539
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h2 class="mb-0">Address</h2>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                           HSR Layout, Bengaluru
+                                        </div>
+                                    </div>
+                                    <hr>
+                    
+                                </div>
+                            </div>
+
+                            <div class="row gutters-sm">
+                                <div class="col-sm-12 mb-3">
+                                    <div class="card2 h-100">
+                                        <div class="card-body">
+                                            <h1 class="d-flex align-items-center mb-3">Reporting Manager
+                                            </h1>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <h2 class="mb-0">Name: </h2>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    {{managerDetail.firstName}} {{managerDetail.lastName}}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <h2 class="mb-0">Email: </h2>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                    {{managerDetail.userName}}
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <h2 class="mb-0">Designation: </h2>
+                                                </div>
+                                                <div class="col-sm-9 text-secondary">
+                                                        Manager
+                                                </div>
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</div>

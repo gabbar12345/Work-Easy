@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<input [(ngModel)]="today.date" (ngModelChange)='deskBookings($event)' ngbDatepicker name="date"
+                      type="date" class="form-control hide mb-4 datepicker" id="date">
+<ul class="responsive-table container-fluid" style="overflow-y:auto;max-height: 65vh;">
+  <li class="table-header">
+    <div class="col col-1">Id</div>
+    <div class="col col-2">Fullname</div>
+    <div class="col col-3">Email</div>
+    <div class="col col-4">Start Time</div>
+    <div class="col col-5">End Time</div>
+  </li>
+  <li class="table-row" *ngFor="let e of employeedata" >
+    <div class="col col-1" data-label="Job Id">{{e.bookingId}}</div>
+    <div class="col col-2" data-label="Customer Name">{{e.employees.firstName}}</div>
+    <div class="col col-3" data-label="Amount">{{e.employees.userName}}</div>
+    <div class="col col-4" data-label="Payment Status">{{e.startTime}}</div>
+    <div class="col col-5" data-label="Payment Status">{{e.endTime}}</div>
+  </li>
+  </ul>
+
+<!-- <div class="table-responsive-xl">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Fullname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Start Time</th>
+        <th scope="col">End Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of employeedata">
+        <td >{{e.bookingId}}</td>
+        <td>{{e.employees.firstName}}</td>
+        <td>{{e.employees.userName}}</td>
+        <td >{{e.startTime}}</td>
+        <td> {{e.endTime}}</td>
+      </tr>
+    </tbody>
+  </table> -->
+<!-- </div> -->

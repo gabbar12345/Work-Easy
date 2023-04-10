@@ -1,0 +1,33 @@
+<div class="container-fluid page">
+    <!-- <div class="d-flex page__box p-3 mt-2">Add Floor</div> -->
+    <div class="page__content shadow mt-5">
+        <div class="container-fluid" style="background-color:white">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main-box clearfix align-items-center">
+                        <!-- {{floor | json}}   -->
+                        <form (ngSubmit)="addFloor()" #mdesk="ngForm">
+                            <div class="form-row p-3">
+                                <div class="form-group col-md-6">
+                                    <div class="slot_title ">
+                                        Enter FloorName
+                                    </div>
+                                    <br>
+                                    <input [(ngModel)]="floor.floorNo" name="floorNo" type="input"
+                                        class="form-control input_width" id="input" placeholder="FloorName" required #mdesk1="ngModel">
+                                        <div class="alert alert-danger position-relative" *ngIf="mdesk1.invalid && (mdesk1.touched || mdesk1.dirty)">
+                                            <span> FloorName is required</span>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="text-center d-flex justify-content-left mb-2">
+                                <button type="submit" class="btn btn-info btn-lg" [disabled]="mdesk.invalid" style="margin-bottom:10px">Add Floor</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

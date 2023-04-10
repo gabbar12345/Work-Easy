@@ -1,0 +1,118 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">Parking Slot</span></div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn btn-info btn-lg ml-4" (click)="viewBookingp()">
+                    View Bookings
+                </div>
+                <div class="main-box clearfix align-items-center form_box">
+                    <!-- {{member | json}} -->
+                    <form id="form" (ngSubmit)="add()" #pp="ngForm">
+                        <div class="form-row p-3">
+                        </div>
+
+                        <div class="form-row p-3">
+                            <div class="form-group col-md-6">
+                                <label class="mb-4" for="role">Parking Area</label>
+                                <select [(ngModel)]="member.slots.area" (ngModelChange)='getslot($event)' name="role"
+                                    class="form-control input_width" id="role" required #pp1="ngModel">
+                                    <option>Select</option>
+                                    <option *ngFor="let f of area" [ngValue]="f">{{f?.areaNo}}</option>
+
+                                </select>
+                                <div class="alert alert-danger position-relative" *ngIf="pp1.invalid && (pp1.touched || pp1.dirty)">
+                                    <span>Area is required</span>
+                                </div>
+                                <!-- <select [(ngModel)]="meet.room"  name="rooms" class="form-control" id="rooms"> -->
+
+                                <!-- </select> -->
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="mb-4" for="doj">Date</label>
+                                <input [(ngModel)]="member.date" (ngModelChange)='getslot($event)' name="doj"
+                                    type="date" class="form-control input_width" id="doj" placeholder="Date Of Joining" required #pp2="ngModel">
+                                    <div class="alert alert-danger position-relative" *ngIf="pp2.invalid && (pp2.touched || pp2.dirty)">
+                                        <span>Date is required</span>
+                                    </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="mb-4" for="endTime">Start Time</label>
+                                <input [(ngModel)]="member.startTime" (ngModelChange)='getslot($event)' name="startTime" type="time"
+                                    class="form-control input_width" id="startTime" placeholder="endTime" step="1800" required #pp3="ngModel">
+
+
+                                    <div class="alert alert-danger position-relative" *ngIf="pp3.invalid && (pp3.touched || pp3.dirty)">
+                                        <span>Start Time is required</span>
+                                    </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                            <label class="mb-4" for="stime">End Time</label>
+                            <input [(ngModel)]="member.endTime"  (ngModelChange)='getslot($event)' name="stime" type="time"
+                                class="form-control input_width" id="stime" placeholder="End Time" step="1800" required #pp4="ngModel">
+
+                                <div class="alert alert-danger position-relative" *ngIf="pp4.invalid && (pp4.touched || pp4.dirty)">
+                                    <span>End Time is required</span>
+                                </div>
+                            </div>
+                            <!-- <input type="text" name="slots" class="hide_me" />
+                            <div class="slot_details">
+
+                                <div class="slot_div">
+                                    <div class="slot_title ">
+                                        All Slots
+                                    </div>
+                                    <div class="slot_item" *ngFor="let p of allslot" (click)="setNewVal(p)"
+                                        [ngClass]="{'active':setSlot==p.parkingSlotId}">
+                                        {{p.parkingSlotName}}
+        
+                                    </div>
+
+                                </div>
+                            </div> -->
+
+                           <!---available slot-->
+                            <input type="text" [(ngModel)]="member.slots" name="slots" class="hide_me" required />
+                            <div class="slot_details">
+                                <div *ngIf="showSlot" class="slot_title ">
+                                    Choose Available Slot
+                                </div>
+                                <div class="slot_div">
+
+                                    <div class="slot_item" *ngFor="let d of slot" (click)="setNewVal(d)"
+                                        [ngClass]="{'active':setSlot==d.parkingSlotId}">
+                                        {{d.parkingSlotName}}
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+
+                            
+                            
+
+
+                        </div>
+                        <div class="text-center ">
+                            <button type="submit" class="btn btn-info btn-lg submit_button" [disabled]="pp.invalid">Book Slot</button>
+                            
+                            <button type="reset"  class="btn btn-danger btn-lg submit_button " value="reset">
+                                Clear
+                              </button>
+      
+                        </div>
+
+
+
+                    </form>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

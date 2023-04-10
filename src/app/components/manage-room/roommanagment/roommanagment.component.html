@@ -1,0 +1,49 @@
+<div class="container-fluid page">
+    <!-- <div class="d-flex page__box p-3 mt-2">Add Floor</div> -->
+    <div class="page__content mt-5">
+        <div class="container" style="background-color: white;">
+            <div class="row">
+                <div class="col-12">
+                    <!-- <div class="main-box clearfix align-items-center "> -->
+                        <!-- {{floor | json}}   -->
+                        <form (ngSubmit)="addRoom()" #roomf="ngForm">
+                            <div class="form-row p-3">
+                                <div class="form-group col-md-6">
+                                    <div class="slot_title ">
+                                        Enter HallName
+                                    </div>
+                                    <br>
+                                    <input [(ngModel)]="room.hallName" name="hallName" type="input"
+                                        class="form-control input_width" id="input" placeholder="HallName" required #roof1="ngModel">
+                                    <div class="alert alert-danger position-relative" *ngIf="roof1.invalid && (roof1.touched || roof1.dirty)">
+                                            <span>HallName is required</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row p-3">
+                                <div class="form-group col-md-6">
+                                    <div class="slot_title " >
+                                        Enter Capacity
+                                    </div>
+                                    <br>
+                                    <input [(ngModel)]="room.capacity" name="capacity" type="input"
+                                        class="form-control input_width" id="input" placeholder="capacity" required #roof2="ngModel">
+                                    <div class="alert alert-danger position-relative" *ngIf="roof2.invalid && (roof2.touched || roof2.dirty)">
+                                            <span>Capacity is required</span>
+                                    </div>
+                                        
+                                </div>
+                                
+                            </div>
+                            <div class="text-center d-flex justify-content-left mb-2">
+                                <button type="submit" class="btn btn-info btn-lg"  [disabled]="roomf.invalid" style="margin-bottom:10px">Add Room</button>
+                            </div>
+                        </form>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+</div>

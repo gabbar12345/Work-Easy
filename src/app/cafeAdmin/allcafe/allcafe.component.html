@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+  integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">All Cafe</span></div>
+  <div class="page__content shadow p-3 position-relative">
+    <!-- <div class="col-sm-9">
+				<form class="form-inline my-2 my-lg-0 ">
+					<input type="search" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel name="key"
+						id="searchName" class="form-control mr-sm-2 searchtop" placeholder="Search approved rejected..."
+						required>
+				</form>
+			</div> -->
+
+
+    <div class="container-fluid " id="main-container" style="overflow-y:auto;max-height: 73vh;">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main-box clearfix">
+            <ul class="responsive-table">
+              <li class="table-header">
+                <div class="col col-1">Id</div>
+                <div class="col col-2">Cafe</div>
+                <div class="col col-3">Location</div>
+                <div class="col col-4">Status</div>
+                <div class="col col-5">View Stall</div>
+                <div class="col col-4"> Change Status</div>
+
+              </li>
+              <li class="table-row" *ngFor="let e of cafedata">
+                <div class="col col-1" data-label="Job Id">{{e.cafeId}}</div>
+                <div class="col col-2" data-label="Customer Name">{{e.cafeName}}</div>
+                <div class="col col-3" data-label="Customer Name">{{e.floor.floorNo}}</div>
+                <div class="col col-4" data-label="Amount">{{e.cafeStatus}}</div>
+                <div class="col col-2 btn btn-info button_design" data-label="mount" (click)="stat(e)">View Stalls</div>
+
+
+                <div class="col col-5" *ngIf="e.cafeStatus==='open'; else secondPart" data-label="status">
+                  <a (click)="updateToClose(e.cafeId)" class="btn btn-info"><i class="fa fa-eye-slash"></i></a>
+                </div>
+                <!-- <div class="col col-5" ng-If="e.cafeStatus==='close';else secondPart" data-label="status">
+                  <a (click)="updateToOpen(e.cafeId)" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                </div> -->
+
+                <ng-template #secondPart>
+                  <div class="col col-5" data-label="status1">
+                    <a (click)="updateToOpen(e.cafeId)" class="btn btn-info"><i class="fa fa-eye"></i></a>
+
+                  </div>
+                </ng-template>
+                <!-- <div class="col col-5" data-label="Amount"><i class="fas fa-eye"><button
+                      (click)="updateToClose(e.cafeId)"> Click me</button> </i></div> -->
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

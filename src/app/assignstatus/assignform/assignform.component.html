@@ -1,0 +1,81 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 mt-2">Assign Employee</div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-box clearfix align-items-center">
+                        <!-- {{meet | json}}   -->
+                        <form (ngSubmit)="meeting()"  #assign="ngForm">
+                            <div class="form-row p-3">
+
+                                <div class="form-group col-md-6">
+                                    <label for="date">Date</label>
+                                    <input [(ngModel)]="meet.date" name="date" type="date" class="form-control"
+                                        id="date" placeholder="Date" required #dat="ngModel">
+                                     <div class="alert alert-danger position-relative" *ngIf="dat.invalid && (dat.touched || dat.dirty)">
+                                        <span>Date is required</span>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                
+                            
+
+                            <div class="form-row p-3">
+                                <div class="form-group col-md-6">
+                                    <label for="rooms">Status</label>
+                                    <select [(ngModel)]="meet.statusForDates" name="rooms" class="form-control"
+                                        id="rooms" required #wf="ngModel">
+
+                                        <option>WFH</option>
+                                        <option>WFO</option>
+                                        <!-- <option *ngFor="let man of rooms" [ngValue]="man">{{man?.hallName}}</option> -->
+                                    </select>
+                                    <div class="alert alert-danger position-relative" *ngIf="wf.invalid && (wf.touched || wf.dirty)">
+                                        <span>Field is required</span>
+                                    </div>
+                            </div>
+                                </div>
+
+                            
+                            <div class="form-row p-3">
+                                <div class="form-group col-md">
+                                    <label for="attendies">Add employee</label>
+
+                                    <!-- <select [(ngModel)]="meet.employees" name="attendies" class="form-control"
+                                        id="attendies" multiple>
+                                        <option [ngValue]="user.principal.employee" selected>
+                                            {{user.principal.employee.userName}}</option>
+                                        <option *ngFor="let man of employees" [ngValue]="man">{{man?.userName}}</option>
+                                    </select> -->
+                                    <ng-select [(ngModel)]="meet.employees" name="attendies" class="form-control"
+                                        id="attendies" [multiple]="true" bindLabel="attendees" groupBy="attendees"
+                                        [hideSelected]="false" [closeOnSelect]="false" [selectableGroup]="true"
+                                        [dropdownPosition]="'top'" required  #op="ngModel" >
+                                        <ng-option *ngFor="let man of employees" [value]="man">
+                                            {{man?.firstName}} {{man?.lastName}}
+                                        </ng-option>
+
+                                    </ng-select>
+
+                                    <div class="alert alert-danger position-relative" *ngIf="op.invalid && (op.touched || op.dirty)">
+                                        <span>Field is required</span>
+                                    </div>
+                                    
+
+                                </div>
+
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary" [disabled]="assign.invalid" >Assign Status</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<app-header  (toggleSidebarForMe)="sideBarToggler()"></app-header>
+<mat-sidenav-container class="">
+  <mat-sidenav mode="side" [opened]="sideBarOpen" class="grad">
+<mat-nav-list>
+    
+    
+    <h1 matSubheader class="mt-2"></h1>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['admindashboard']">
+      <mat-icon>dashboard</mat-icon> Dashboard
+    </a>
+  
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['home']">
+      <mat-icon>home</mat-icon> Profile
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['dashboard']">
+      <mat-icon>group_work</mat-icon> View Employee
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['add']"> <mat-icon>supervisor_account</mat-icon> Add Employee </a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['calendar']"> <mat-icon>calendar_view_week</mat-icon> Schedule </a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['desk']"> <mat-icon>business</mat-icon> Book Desk </a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['parking']"> <mat-icon>local_parking</mat-icon>  Book Parking slot </a>
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['EmployeeList']"> <mat-icon>visibility</mat-icon>Office Attendees</a>
+    <a mat-list-item routerLinkActive="list-item-active"  [routerLink]="['cafeteria']"> <mat-icon>local_cafe</mat-icon> Cafeteria </a>
+
+
+    <a mat-list-item routerLinkActive="list-item-active" [routerLink]="['ManageDesk']"> <mat-icon>business</mat-icon> ManageDesk </a>
+    <a mat-list-item routerLinkActive="list-item-active"  [routerLink]="['ManageParking']"> <mat-icon>local_parking</mat-icon> ManageParking</a>
+    <a mat-list-item  routerLinkActive="list-item-active" [routerLink]="['ManageRoom']"> <mat-icon>meeting_room</mat-icon> ManageRoom</a>
+
+  </mat-nav-list>
+  <div class="footer">HashedIn <br><br> By Deloitte</div>
+  </mat-sidenav>
+  <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,59 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container-fluid page">
+	<div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">All Requests</span></div>
+	<div class="page__content shadow p-3 position-relative">
+		<div class="row ml-4 pl-2">
+			<div class="col-sm-9">
+				<div>
+					
+					<button class="btn btn-info p-3 mr-5" (click)="pendingM()">Pending</button>
+					<button class="btn btn-success p-3 mr-5" (click)="acceptedM()">Accepted</button>
+					<button class="btn btn-danger p-3 mr-5" (click)="rejectedM()">Rejected</button>
+				</div>
+				
+			</div>
+			
+			<div (click)="assign()" class="col-sm-2 btn btn-info btn-lg  assign_button">
+				Assign Status
+			</div>
+
+		</div>
+		<div class="container-fluid" style="overflow-y:auto;max-height: 73vh;">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="main-box clearfix">
+						<ul class="responsive-table mt-4">
+							<li class="table-header">
+								<div class="col col-1">Employee</div>
+								<div class="col col-2">Date</div>
+								<div class="col col-3">Status</div>
+								<div clsss="col col-4">Request</div>
+								<div class="col col-5">Action</div>
+
+							</li>
+							<li class="table-row" *ngFor="let req of request">
+								<div class="col col-1" data-label="Job Id">{{req.employee.firstName}}
+									{{req.employee.lastName}}</div>
+								<div class="col col-2" data-label="Customer Name">{{req.date}}</div>
+								<div class="col col-3" data-label="Amount">{{req.requestStatus}}</div>
+								<div class="col col-4" data-label="Amount">{{req.statusForDay}}</div>
+								<div class="col col-6" *ngIf="req.requestStatus==='PENDING';else secondPart"
+									data-label="status">
+									<a (click)="approve(req!.requestId)" class="btn btn-info"><i
+											class="fa fa-check"></i></a>
+									<a (click)="reject(req!.requestId)" class="btn btn-danger ass_bu"><i
+											class="fa fa-times" aria-hidden="true"></i></a>
+								</div>
+								<ng-template #secondPart>
+									<div class="col col-5" data-label="status"></div>
+								</ng-template>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

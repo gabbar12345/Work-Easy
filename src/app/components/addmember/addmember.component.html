@@ -1,0 +1,81 @@
+
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">Add Employee</span></div>
+    <div class="page__content shadow p-3 position-relative">
+     
+        
+    <!--hjhj-->
+<div class="container-fluid" style="overflow-y:auto;max-height: 80vh;">
+<div class="row">
+	<div class="col-md-12">
+		<div class="main-box clearfix align-items-center form_box">
+       <!-- {{member | json}}       -->
+			<form  #userdetailform="ngForm" (ngSubmit)="add()" class="p-4">
+                <div class="form-row p-4">
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4" class="mb-4">First Name</label>
+                      <input [(ngModel)]="member.firstName" name="first" type="text" class="form-control input_width" id="inputEmail4" placeholder="firstName">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4" class="mb-4">Last Name</label>
+                      <input [(ngModel)]="member.lastName" name="last" type="text" class="form-control input_width" id="inputPassword4" placeholder="lastName">
+                    </div>
+                  </div>
+                <div class="form-row p-3">
+                  <div class="form-group col-md-6" >
+                    <label for="inputEmail4" class="mb-4">Email</label>
+                    <input [(ngModel)]="member.userName" name="UserName" type="text" class="form-control input_width" id="inputEmail4" placeholder="UserName">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4" class="mb-4">Password</label>
+                    <input [(ngModel)]="member.password" name="password" type="password" class="form-control input_width" id="inputPassword4" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-row p-3">
+                    <div class="form-group col-md-6">
+                      <label for="role" class="mb-4">Role</label>
+                      <select [(ngModel)]="member.roles" name="role" class="form-control input_width" id="role">
+                        <option *ngFor="let role of member.roles" [ngValue]="[role]">{{role["name"]}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="man" class="mb-4">Manager</label>
+                      <select [(ngModel)]="member.managerId" name="manager" class="form-control input_width" id="manager">
+                        
+                        <option *ngFor="let man of member.managerId" [ngValue]="man['employeeId']">{{man["firstName"]}}</option>
+                      </select>
+                    </div>
+                    </div>
+                    <div class="form-row p-3">
+                  
+                  <div class="form-group col-md-6">
+                    <label for="inputAddress2" class="mb-4">Designation</label>
+                    <input [(ngModel)]="member.designation" name="Designation" type="text" class="form-control input_width" id="inputAddress2" placeholder="Designation">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="doj" class="mb-4">Date of Joining</label>
+                    <input [(ngModel)]="member.dateOfJoining" name="doj" type="date" class="form-control input_width" id="doj" placeholder="Date Of Joining">
+                  </div>
+                  </div>
+                  <div class="text-center">
+                <button type="submit" class="btn btn-info input_width submit_button">Add Employee</button>
+                <button type="reset" class="btn btn-danger input_width submit_button">Reset </button>
+                </div>
+              </form>
+             
+	<!----		<ul class="pagination pull-right">
+				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+			</ul>  --->
+		</div>
+	</div>
+</div>
+</div>
+      
+    </div>
+  </div>

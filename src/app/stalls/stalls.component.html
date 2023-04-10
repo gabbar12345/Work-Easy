@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">Stalls</span></div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-box clearfix align-items-center">
+                  <div class="btn btn-lg m-3" (click)="goback()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>  Go Back</div>
+                  <ul class="responsive-table">
+                    <li class="table-header"> 
+                      <div class="col col-1">Stalls</div>
+                      <div class="col col-2">Status</div>
+                    </li>
+                    <li class="table-row" *ngFor="let temp of arr1">
+                      <div class="col col-1" data-label="Job Id">{{temp.stallName}}</div>
+                      <div class="col col-2" data-label="Customer Name">{{temp.stallStatus}}</div>
+                    </li>
+                    </ul>  
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

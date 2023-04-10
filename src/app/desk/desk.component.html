@@ -1,0 +1,98 @@
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">Book Desk</span></div>
+    <div class="page__content shadow p-3 position-relative">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn btn-info btn-lg ml-4" (click)="viewBooking()">
+                    View Bookings
+                </div>
+                <div class="main-box clearfix align-items-center form_box">
+                
+                                        <!-- {{bookdesk | json}} -->
+                    <form id="form" (ngSubmit)="add()" #ff1="ngForm" >
+                        <div class="form-row p-3 ">
+                            <div class="form-group col-md-6">
+                                <label class="mb-4" for="role">Floor</label>
+                                <select [(ngModel)]="bookdesk.desks.floor" (ngModelChange)='getdesk($event)'  name="role"
+                                    class="form-control input_width" id="role"  required #de1="ngModel">
+                                    <option>Select</option>
+                                    <option *ngFor="let f of floor" [ngValue]="f">{{f?.floorNo}}</option>
+
+                                </select>
+                                <div class="alert alert-danger position-relative" *ngIf="de1.invalid && (de1.touched || de1.dirty)">
+                                    <span>Floor is required</span>
+                                </div>
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="mb-4" for="doj">Date</label>
+                                <input [(ngModel)]="bookdesk.date" (ngModelChange)='getdesk($event)'  name="doj"
+                                    type="date" class="form-control input_width" id="doj" placeholder="Date Of Joining" required #de2="ngModel">
+
+                                    <div class="alert alert-danger position-relative" *ngIf="de2.invalid && (de2.touched || de2.dirty)">
+                                        <span>Date is required</span></div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="mb-4" for="endTime">Start Time</label>
+                                <input [(ngModel)]="bookdesk.startTime" (ngModelChange)='getdesk($event)'  name="startTime"
+                                    type="time" class="form-control input_width" id="startTime" placeholder="endTime"
+                                    step="1800" required #de3="ngModel">
+                                    <div class="alert alert-danger position-relative" *ngIf="de3.invalid && (de3.touched || de3.dirty)">
+                                        <span>Start time is required</span>
+                                    </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="mb-4" for="stime">End Time</label>
+                                <input [(ngModel)]="bookdesk.endTime" (ngModelChange)='getdesk($event)' name="stime"
+                                    type="time" class="form-control input_width" id="stime" placeholder="End Time"
+                                    step="1800" required #de4="ngModel">
+                                    <div class="alert alert-danger position-relative" *ngIf="de4.invalid && (de4.touched || de4.dirty)">
+                                        <span>End time is required</span>
+                                    </div>
+                            </div>
+                           
+                            <input type="text" [(ngModel)]="bookdesk.desks" name="desks" class="hide_me" required />
+                            <div class="desk_details">
+                                <div *ngIf="showDesk" class="desk_title ">
+                                    Choose Available Desk
+                                </div>
+                                <div class="desk_div">
+
+                                    <div class="desk_item" *ngFor="let d of desk" (click)="setNewVal(d)"
+                                        [ngClass]="{'active':setState==d.deskId}">
+                                        {{d.deskName}}
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-lg submit_button"  [disabled]="ff1.invalid">Book Desk</button>
+
+                            <button type="reset" class="btn btn-danger submit_button " value="reset">
+                                Clear
+                            </button>
+
+                        </div>
+
+
+
+                    </form>
+                    
+
+
+
+
+                </div>
+              
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

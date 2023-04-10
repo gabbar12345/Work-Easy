@@ -1,0 +1,263 @@
+
+<div class="container-fluid page grad">
+	<div class="d-flex page__box p-3 rounded border border-white">
+		<div class="col-md-9 ml-5 mt-3">Calendar</div>
+		<div class="btn btn-info btn-lg btn3d" (click)="newMeet()">
+			<i class="fa fa-plus"></i>
+			New Meeting
+		</div>
+	</div>
+	<div class="page__content shadow p-3 position-relative">
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="main-box clearfix">
+						<div class="calend" style="overflow-y:auto;
+			max-height: 75vh;
+			">
+							<full-calendar [options]="calendarOptions"></full-calendar>
+							<!-- <h1>hg {{event[0].meetingId}}</h1> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--Model for particular events display-->
+<ng-template #template>
+	<div class="modal-header">
+		<h1 class="modal-title pull-left">{{title}}
+			<!-- <br>{{start | date:'shortTime'}} - {{end | date:'shortTime'}} -->
+		</h1>
+		<button type="button" *ngIf="select.employeeId===organiser.employeeId" class="btn btn-info btn-lg ml-5 pull-right" (click)="openModal()">Edit</button>
+		<button type="button" *ngIf="select.employeeId===organiser.employeeId" class="btn btn-danger btn-lg ml-2 pull-right" (click)="del()">Delete</button>
+		<button type="button" class="btn-close close" aria-label="Close" (click)="modalRef?.hide()">
+			<span aria-hidden="true" class="visually-hidden">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<h2>Meeting Details :</h2>
+		<h3>{{agenda}}</h3>
+		<h3>Room: {{roomname}}<button type="button" *ngIf="select.employeeId===organiser.employeeId && roomname!='No Room'" class="btn btn-danger pull-right" (click)="delroom()"><span>Cancel Room</span></button></h3>
+		<a href="{{link}}" target="_blank">{{link}}</a>
+	</div>
+</ng-template>
+
+<!-- edit meeting form -->
+<ng-template #editProfileModal let-modal>
+	<div class="modal-header">
+		<!-- {{meet | json}} -->
+		<h1 class="modal-title pull-left" id="editProfileLabel">Edit Meeting Details</h1>
+
+		<button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+			<span aria-hidden="true" class="visually-hidden">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form (ngSubmit)="submit()">
+			<div class="form-row p-3">
+				<div class="form-group col-md-6">
+					<label for="title">Title</label>
+					<input [(ngModel)]="meet.title" name="title" type="text" class="form-control" id="title"
+						placeholder="Title">
+					
+				</div>
+				<div class="form-group col-md-6">
+					<label for="date">Date</label>
+					<input [(ngModel)]="meet.date" (ngModelChange)='getroom($event)' name="date" type="date"
+						class="form-control" id="date" value="2022-11-09">
+				</div>
+			</div>
+			<div class="form-row p-3">
+				<div class="form-group col-md-6">
+					<label for="stime">Start Time</label>
+					<input [(ngModel)]="meet.startTime" (ngModelChange)='getroom($event)' name="stime" type="time"
+						class="form-control" id="stime" placeholder="Start Time" step="1800">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="endTime">End Time</label>
+					<input [(ngModel)]="meet.endTime" (ngModelChange)='getroom($event)' name="endTime" type="time"
+						class="form-control" id="endTime" placeholder="endTime" step="1800">
+				</div>
+			</div>
+			<div class="form-row p-3">
+				<div class="form-group col-md-6">
+					<label for="link">Join Link</label>
+					<input [(ngModel)]="meet.meetLink" name="link" type="url" class="form-control" id="link"
+						placeholder="Meeting Link">
+				</div>
+				<!-- <div class="form-group col-md-6">
+					<label for="rooms">Meeting Room</label>
+					<select [(ngModel)]="meet.room" name="rooms" class="form-control" id="rooms">
+
+						<option>Select</option>
+						<option *ngFor="let man of rooms" [ngValue]="man">{{man?.hallName}}</option>
+					</select>
+				</div> -->
+			</div>
+
+				<input type="text" [(ngModel)]="meet.room" name="rooms" class="hide_me" />
+                <div class="slot_details">
+                    <div *ngIf="showSlot" class="slot_title ">
+                        Choose Available Slot
+                    </div>
+                    <div class="slot_div">
+                                    
+                        <div class="slot_item" *ngFor="let man of rooms" (click)="setNewVal(man)"
+                                        [ngClass]="{'active':setSlot==man.roomId}">
+                                {{man.hallName}}
+                        </div>
+
+                    </div>
+                 </div>
+
+								 
+
+			
+			
+			<div class="form-row p-3">
+				<div class="form-group col-md">
+					<label for="attendies">Add Attendies</label>
+
+					<ng-select [(ngModel)]="meet.attendees" name="attendies" class="form-control"
+						id="attendies" [multiple]="true" bindLabel="attendees"  groupBy="attendees"
+						[hideSelected]="true" [closeOnSelect]="false" [selectableGroup]="true" [dropdownPosition]="'top'"
+						>
+						<ng-option *ngFor="let man of employees" [value]="man">
+							{{man?.userName}} 
+						</ng-option>
+					
+					</ng-select>
+
+				</div>
+
+			</div>
+			<div class="form-row p-3">
+				<div class="form-group col-md-12">
+					<label for="agenda">Agenda</label>
+					<input [(ngModel)]="meet.agenda" name="agenda" type="text" class="form-control"
+						id="agenda" placeholder="agenda">
+				</div>
+				
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary">Update Meeting</button>
+			</div>
+		</form>
+	</div>
+</ng-template>
+
+
+<!--  meeting popup -->
+
+<ng-template #newmeet>
+	<!-- {{meet | json}} -->
+	
+	<div class="modal-header">
+		<h1 class="modal-title pull-left">Create New Meeting
+		</h1>
+		<button type="button" class="btn-close close" aria-label="Close" (click)="modalRef?.hide()">
+			<span aria-hidden="true" class="visually-hidden">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form (ngSubmit)="newmeeting()" #f="ngForm">
+			<div class="form-row p-3">
+				<div class="form-group col-md-6" 
+				>
+					<label for="title">Title</label>
+					<input required [(ngModel)]="meet.title" name="title" type="text" class="form-control"
+						id="title" placeholder="Title" #nam="ngModel">
+						<div class="alert alert-danger position-relative" *ngIf="nam.invalid && (nam.touched || nam.dirty)">
+							<span>Title is required</span></div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="date">Date</label>
+					<input [(ngModel)]="meet.date" (ngModelChange)='getroom($event)' name="date"
+						type="date" class="form-control" id="date" value="2022-11-09" #date="ngModel" required>
+						<div class="alert alert-danger position-relative" *ngIf="date.invalid && (date.touched || date.dirty)">
+							<span>Date is required</span></div>
+				</div>
+			</div>
+			<div class="form-row p-3">
+				<div class="form-group col-md-6">
+					<label for="stime">Start Time</label>
+					<input [(ngModel)]="meet.startTime" (ngModelChange)='getroom($event)' name="stime"
+						type="time" class="form-control" id="stime" placeholder="Start Time"
+						step="1800" #start="ngModel" required>
+						<div class="alert alert-danger position-relative" *ngIf="start.invalid && (start.touched || start.dirty)">
+							<span>Time is required</span></div>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="endTime">End Time</label>
+					<input [(ngModel)]="meet.endTime" (ngModelChange)='getroom($event)' name="endTime"
+						type="time" class="form-control" id="endTime" placeholder="endTime" step="1800" #end="ngModel" required>
+						<div class="alert alert-danger position-relative" *ngIf="end.invalid && (end.touched || end.dirty)">
+							<span>Time is required</span></div>
+				</div>
+			</div>
+			<div class="form-row p-3">
+				<div class="form-group col-md">
+					<label for="link">Join Link</label>
+					<input [(ngModel)]="meet.meetLink" name="link" type="url" class="form-control"
+						id="link" placeholder="Meeting Link">
+				</div>
+				
+				<!-- <div class="form-group col-md-6">
+					<label for="rooms">Meeting Room</label>
+					<select [(ngModel)]="meet.room" name="rooms" class="form-control" id="rooms">
+						<option>Select</option>
+						<option *ngFor="let man of rooms" [ngValue]="man">{{man?.hallName}}</option>
+					</select>
+				</div> -->
+
+				
+
+
+			</div>
+			<div class="form-row p-3">
+				<div class="form-group col-md">
+					<label for="attendies">Add Attendies</label>
+					<ng-select [(ngModel)]="meet.attendees" name="attendies" class="form-control"
+						id="attendies" [multiple]="true" bindLabel="attendees"  groupBy="attendees"
+						[hideSelected]="true" [closeOnSelect]="false" [selectableGroup]="true" [dropdownPosition]="'top'"
+						required #att="ngModel">
+						<ng-option *ngFor="let man of employees" [value]="man">
+							{{man?.userName}} 
+						</ng-option>
+					
+					</ng-select> 
+					<div class="alert alert-danger position-relative" *ngIf="att.invalid && (att.touched || att.dirty)">
+						<span>This field is required</span></div>
+				</div>
+			</div>
+			<div class="form-row p-3">
+				<div class="form-group col-md-12">
+					<label for="agenda">Agenda</label>
+					<input [(ngModel)]="meet.agenda" name="agenda" type="text" class="form-control"
+						id="agenda" placeholder="agenda">
+				</div>
+				
+			</div>
+			<input type="text" [(ngModel)]="meet.room" name="rooms" class="hide_me" />
+                <div class="slot_details">
+                    <div *ngIf="showSlot" class="slot_title ">
+                        <h3>Available Rooms</h3>
+                    </div>
+                    <div class="slot_div">
+                                    
+                        <div class="slot_item" *ngFor="let man of rooms" (click)="setNewVal(man)"
+                                        [ngClass]="{'active':setSlot==man.roomId}">
+                                {{man.hallName}}
+                        </div>
+
+                    </div>
+                 </div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-info" [disabled]="f.invalid">Create Schedule</button>
+			</div>
+		</form>
+	</div>
+</ng-template>

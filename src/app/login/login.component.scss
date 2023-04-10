@@ -1,0 +1,35 @@
+#id1
+{
+    background-color: linear-gradient(blue, purple);
+
+}
+
+.input_width_login
+{
+    height: 40px !important;
+    font-size: 1.2rem;
+    // width: 50vh !important;
+    margin-right: 20px;
+    border:1px solid black;
+    border-radius: 8px;
+}
+.bt{
+    border: 1px solid black;
+}
+.eye_position
+{
+    //z-index: 3;
+    margin-left: 400px;
+    //padding-bottom: 20px;
+    //margin-bottom: 400px;
+    //margin-bottom: 10px;
+    //margin-top: 10px;
+
+    height: 70px;
+    width:50px;
+
+    position: absolute;
+   // margin-left:355px;
+    margin-bottom: 550px;
+   margin-top: -30px;
+}

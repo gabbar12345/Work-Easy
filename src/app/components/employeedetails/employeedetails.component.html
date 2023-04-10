@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">All Working From Office Employee</span></div>
+    <div class="page__content shadow p-3 position-relative">
+
+        <div class="btn btn-lg ml-3" (click)="goback()" style="position: sticky;top:0;"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>  Go Back</div>
+                      <input [(ngModel)]="today.date" (ngModelChange)='EmployeesAttendingWFO($event)' ngbDatepicker name="date"
+                      type="date" class="form-control hide mb-4 datepicker" id="date">
+        <div class="container-fluid " id="main-container" style="overflow-y:auto;max-height: 65vh;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-box clearfix" >
+                      
+                      
+                      <ul class="responsive-table">
+                        <li class="table-header">
+                          <div class="col col-1">Id</div>
+                          <div class="col col-2">Fullname</div>
+                          <div class="col col-3">Email</div>
+                          <div class="col col-4">Status</div>
+                        </li>
+                        <li class="table-row" *ngFor="let e of employeedata" >
+                          <div class="col col-1" data-label="Job Id">{{e.employeeId}}</div>
+                          <div class="col col-2" data-label="Customer Name">{{e.firstName}}</div>
+                          <div class="col col-3" data-label="Amount">{{e.userName}}</div>
+                          <div class="col col-4" data-label="Payment Status">WFO</div>
+                        </li>
+                        </ul>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

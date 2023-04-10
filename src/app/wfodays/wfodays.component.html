@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+  integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<div class="container-fluid page">
+  <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">WFO DAYS</span></div>
+  <div class="page__content shadow p-3 position-relative">
+    <div class="btn btn-lg m-3" (click)="goback()"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>  Go Back</div>
+
+    
+
+    <div class="container-fluid " id="main-container" style="overflow-y:auto;max-height: 73vh;">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="main-box clearfix">
+
+            <div class="slot_div">
+
+                <div class="slot_item1" *ngFor="let d of ans">
+                    {{d.localDate}}
+                </div>
+                
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

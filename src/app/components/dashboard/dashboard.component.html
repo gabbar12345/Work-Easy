@@ -1,0 +1,209 @@
+<div class="container-fluid page">
+	<div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">All Employees</span></div>
+	<div class="page__content shadow p-3 position-relative">
+
+
+
+		<div class="container-fluid " id="main-container" style="overflow-y:auto;max-height: 73vh;">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="main-box clearfix">
+
+						<ul class="responsive-table">
+							<li class="table-header">
+							  <div class="col col-1">Employee</div>
+							  <div class="col col-2">DOJ</div>
+							  <div class="col col-3">Role</div>
+							  <div class="col col-4">Email</div>
+							  <div class="col col-5">Action</div>
+
+							</li>
+							<li class="table-row" *ngFor="let employee of employees" >
+							  <div class="col col-1" data-label="Job Id">{{employee?.firstName}} {{employee?.lastName}}</div>
+							  <div class="col col-2" data-label="Customer Name">{{employee?.dateOfJoining | date: 'dd/MM/yyyy'}}</div>
+							  <div class="col col-3" data-label="Amount">{{employee?.designation}}</div>
+							  <div class="col col-4" data-label="Amount">{{employee?.userName}}</div>
+							  <div class="col col-5" data-label="Amount"><a (click)="onOpenModal(employee, 'edit')" class="btn btn-primary tooltips"
+								data-placement="top" data-original-title="Edit"><i
+									class="fa fa-pencil"></i> </a>
+							<a (click)="onOpenModal(employee, 'delete')"
+								class="btn btn-secondary tooltips" data-placement="top"
+								data-original-title="Delete"><i class="fa fa-times"></i></a>
+							</div>
+
+
+							</li>
+							</ul>  
+						<!-- <div class="table-responsive">
+                         
+
+							<table class="table table-striped user-list padd">
+
+								<thead class="table_heading">
+									<tr>
+										<th><span>Email</span></th>
+										<th><span>DOJ</span></th>
+										<th><span>Role</span></th>
+										<th><span>Designation</span></th>
+										<th><span>Action</span></th>
+									</tr>
+								</thead>
+								<tbody *ngFor="let employee of employees">
+									<tr>
+										<td>
+											<div>{{employee?.userName}}</div>
+
+										</td>
+										<td>
+											<div>{{employee?.dateOfJoining | date: 'dd/MM/yyyy'}}</div>
+										</td>
+										<td>
+											<div>{{employee?.designation}}</div>
+										</td>
+										<td>
+											<a href="#">{{employee?.userName}}</a>
+										</td>
+										<td>
+
+
+											<a (click)="onOpenModal(employee, 'edit')" class="btn btn-primary tooltips"
+												data-placement="top" data-original-title="Edit"><i
+													class="fa fa-pencil"></i> </a>
+											<a (click)="onOpenModal(employee, 'delete')"
+												class="btn btn-secondary tooltips" data-placement="top"
+												data-original-title="Delete"><i class="fa fa-times"></i></a>
+
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="modal fade" data-backdrop="false" id="updateEmployeeModal" tabindex="-1" role="dialog"
+	aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="updateEmployeeModalLabel">Edit Employee {{editEmployee?.userName}}</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form #editForm="ngForm">
+					<div class="form-group">
+						<label for="firstName">Name</label>
+						<input type="text" ngModel="{{editEmployee?.firstName}}" name="firstName" class="form-control"
+							id="firstName" aria-describedby="emailHelp" placeholder="Name">
+					</div>
+					<input type="hidden" ngModel="{{editEmployee?.employeeId}}" name="employeeId" class="form-control" id="id"
+						placeholder="employeeId">
+						<input type="hidden" ngModel="{{editEmployee?.password}}" name="password" class="form-control" id="password"
+						placeholder="Email">
+					<div class="form-group">
+						<label for="userName">Email Address</label>
+						<input type="userName" ngModel="{{editEmployee?.userName}}" name="userName" class="form-control"
+							id="userName" placeholder="userName">
+					</div>
+
+					<div class="form-group">
+				   <label for="lastName">Last Name</label>
+				   <input type="text" ngModel="{{editEmployee?.lastName}}" name="lastName" class="form-control" id="lastName" placeholder="lastName">
+				</div>
+				<div class="form-group">
+				   <label for="designation">designation</label>
+				   <input type="text" ngModel="{{editEmployee?.designation}}" name="designation" class="form-control" id="phone" name="designation" placeholder="designation">
+				</div>
+				<div class="form-group">
+				   <label for="dateOfJoining">dateOfJoining</label>
+				   <input type="text" ngModel="{{editEmployee?.dateOfJoining}}" name="dateOfJoining" class="form-control" id="dateOfJoining" placeholder="dateOfJoining">
+				</div>
+
+				<div class="form-group">
+					<label for="profilePic">profilePic</label>
+					<input type="text" ngModel="{{editEmployee?.profilePic}}" name="profilePic" class="form-control" id="profilePic" placeholder="profilePic">
+				 </div>
+				<div class="form-group">
+					<label for="roles" class="mb-4">roles</label>
+					<select ngModel="{{editEmployee?.roles}}" name="roles" class="form-control input_width" id="roles">
+					  <option>Select</option>
+					  <option *ngFor="let role of editEmployee?.roles" [ngValue]="[role]">{{role["name"]}}</option>
+					</select>
+				  </div>
+				  <div class="form-group">
+					<label for="man" class="mb-4">Manager</label>
+					<input ngModel="{{editEmployee?.managerId}}" name="manager" class="form-control input_width" id="manager">
+					  
+				  
+				</div>
+					<div class="modal-footer">
+						<button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+						<button (click)="onUpdateEmloyee(editForm.value)" data-dismiss="modal"
+							class="btn btn-primary">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" data-backdrop="false" id="deleteEmployeeModal" tabindex="-1" role="dialog"
+	aria-labelledby="deleteModelLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="deleteModelLabel">Delete Employee</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<p>Are you sure you want to delete employee {{deleteEmployee?.employeeId}}?</p>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+					<button (click)="onDeleteEmloyee(deleteEmployee!.employeeId)" class="btn btn-danger"
+						data-dismiss="modal">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+		  ...
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+   -->
+<!-- <div class="modal fade"  aria-hidden="true" tabindex="-1" role="dialog" style="display: none;">
+	<div class="modal-dialog">
+		   <div class="modal-content">
+				<div class="modal-header" align="center">
+				   //Your content
+				</div>
+		   <div>
+	</div>
+</div>   -->

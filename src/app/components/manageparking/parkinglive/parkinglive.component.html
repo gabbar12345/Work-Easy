@@ -1,0 +1,58 @@
+<div class="form-group col-md-3">
+    <label class="m-4" for="role">Parking Area</label>
+    <select [(ngModel)]="member.slots.area" (ngModelChange)='getslot($event)' name="role"
+        class="form-control input_width col-md-offset-3" id="role" required #pp1="ngModel">
+        <option value="" disabled selected>Select</option>
+        <option *ngFor="let f of area" [ngValue]="f">{{f?.areaNo}}</option>
+
+    </select>
+    <div class="alert alert-danger position-relative" *ngIf="pp1.invalid && (pp1.touched || pp1.dirty)">
+        <span>Area is required</span>
+    </div>
+</div>
+<div class="container-fluid page">
+    <div class="page__content shadow mt-1">
+        <div class="container-fluid" style="background-color: white;"><br>
+           
+            <span id="ar"></span><span class="txt m-2">Available Parking Slots</span>
+            <span id="nar"></span><span class="txt m-2 mb-5">Unavailable Parking Slots</span>
+            <div class="row mt-5" >
+                <div class="col-sm-12" >
+                    <div class="main-box clearfix align-items-center ">
+                            <div class="slot_div">
+
+                                <div class="slot_item" *ngFor="let d of detail.busySlots" (click)="meetdetail(d.parkingSlotId)">
+                                    {{d.parkingSlotName}}
+                                </div>
+                                <div class="slot_item1" *ngFor="let d of detail.availableSlots">
+                                    {{d.parkingSlotName}}
+                                </div>
+                                
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<ng-template #template>
+	<div class="modal-header">
+		<h1 class="modal-title pull-left">{{listpark.employees.firstName}} {{listpark.employees.lastName}} 
+			<br>
+            {{listpark.startTime}} - {{listpark.endTime}} 
+		</h1>
+		<button type="button" class="btn-close close" aria-label="Close" (click)="modalRef?.hide()">
+			<span aria-hidden="true" class="visually-hidden">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<h2><I>E-mail : {{listpark.employees.userName}}</I> </h2>
+        <!-- <h3>{{detail.room.hallName}}</h3> -->
+		
+    
+		
+    
+	</div>
+</ng-template>

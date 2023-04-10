@@ -1,0 +1,36 @@
+
+<div class="container-fluid page">
+    <div class="d-flex page__box p-3 rounded border border-white"><span class="ml-5 mt-3">Team</span></div>
+    <div class="page__content shadow p-3 position-relative">
+     
+        
+    
+<div class="container-fluid" style="overflow-y:auto;max-height: 73vh;">
+<div  class="row">
+	<div class="col-md-12">
+		<div class="main-box clearfix">
+			<ul class="responsive-table">
+				<li class="table-header">
+				  <div class="col col-1">DOJ</div>
+				  <div class="col col-2">User</div>
+				  <div class="col col-3">Designation</div>
+				  <div class="col col-4">Email</div>
+				</li>
+				<li class="table-row" *ngFor="let employee of employees" >
+				  <div class="col col-1" data-label="Job Id">{{employee?.dateOfJoining | date: 'dd/MM/yyyy'}}</div>
+				  <div class="col col-2" data-label="Customer Name">{{employee?.firstName}} {{employee?.lastName}}</div>
+				  <div class="col col-3" data-label="Amount">{{employee?.designation}}</div>
+				  <div class="col col-4" data-label="Payment Status">{{employee?.userName}}</div>
+				</li>
+			  </ul>
+			
+			</div>
+	</div>
+</div>
+</div>
+      
+    </div>
+  </div>
+
+
+  

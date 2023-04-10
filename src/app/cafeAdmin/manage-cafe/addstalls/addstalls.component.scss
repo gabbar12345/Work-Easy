@@ -1,0 +1,55 @@
+.input_width
+{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+
+}
+
+.rectangle {
+    width: 200px;
+    height: 50px;
+    background: rgb(117, 177, 117);
+    margin-right: 20px;
+    margin-left: 10px;
+ }
+ .showdesk {
+    margin-top: 20px;
+    //background-color: red;
+    display: flex;
+    align-items: center;
+ }
+ .hide_me {
+    display: none;
+ }
+ .slot_div {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+ }
+ .slot_item {
+    height: 60px;
+    width: 100px;
+ 
+    background-color: rgb(141, 241, 141);
+    margin: 5px 10px; //top left
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+ }
+ .active {
+    background-color: rgb(63, 129, 183);
+ }
+ .slot_details {
+    width: 70%;
+ }
+ .slot_title {
+    width: 100%;
+    font-size: 1.25rem;
+ }
